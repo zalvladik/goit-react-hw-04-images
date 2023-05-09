@@ -1,0 +1,24 @@
+.buttonLoadMore{
+    width: 180px;
+    height: 35px;
+    background-color: rgb(60, 60, 179);
+    border-radius: 3px;
+    font-size: 18px;
+    font-weight: 500;
+    color:white;
+    border:none;
+    box-shadow: 0px 10px 19px -3px rgba(0,0,0,0.37);
+    transform: scale(1);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.buttonLoadMore:hover,
+.buttonLoadMore:focus{
+    transform: scale(1.05);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.containerButton{
+    display: flex;
+    justify-content: center;
+    
+}
