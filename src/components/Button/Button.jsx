@@ -1,19 +1,18 @@
-import { Component } from 'react'
 import './styles.css'
 import PropTypes from 'prop-types'
 
-class Button extends Component {
-    moreGallery = () => {
-        this.props.handlePage()
+const Button = ({didLoading,handlePage}) => {
+    const moreGallery = () => {
+        handlePage()
     }
- render(){
+ 
     return(
-        !this.props.didLoading &&
+        !didLoading &&
         <div className='containerButton'>
-            <button disabled={this.props.didLoading} onClick={this.moreGallery} className="buttonLoadMore">Load More</button>
+            <button disabled={didLoading} onClick={moreGallery} className="buttonLoadMore">Load More</button>
         </div>
     )
- }
+ 
 }
 
 Button.propTypes = {

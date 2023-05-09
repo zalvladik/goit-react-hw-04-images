@@ -1,19 +1,17 @@
-import {Component} from "react"
+import { useState } from "react"
 import PropTypes from 'prop-types'
 import './styles.css'
 import { FaSearch } from "react-icons/fa";
 import { toast } from 'react-toastify';
 
-class Searchbar extends Component {
-    state = {
-      currentValue:"",
-      prevName:'',
-    }
+const Searchbar = ({onSubmit,didLoading}) => {
+  const [currentValue, setCurrentValue] = useState('');
+  const [prevName, setPrevName] = useState('')
     
-    searchBarValue = (e) => {
+    const searchBarValue = e => {
       e.preventDefault()
 
-      if(this.state.currentValue.trim() === ""){
+      if(currentValue.trim() === ""){
         return toast.error(`Будь ласка введіть слово для пошуку`, {
           position: "top-right",
           autoClose: 2500,
@@ -26,8 +24,8 @@ class Searchbar extends Component {
           });
       }
 
-      if(this.state.currentValue.trim() === this.state.prevName){
-        return toast.error(`Ви уже продивляєтесь ${this.state.currentValue}`, {
+      if(currentValue.trim() === prevName){
+        return toast.error(`Ви уже продивляєтесь ${currentValue}`, {
           position: "top-right",
           autoClose: 2500,
           hideProgressBar: false,
@@ -39,21 +37,18 @@ class Searchbar extends Component {
           });
       }
       
-        this.props.onSubmit(this.state.currentValue)
-        this.setState({
-          currentValue:"",
-          prevName:this.state.currentValue})
+      onSubmit(currentValue);
+        setPrevName(currentValue)
+        setCurrentValue('');
     } 
-    
-    currentValue = e => {
-        this.setState({currentValue : e.currentTarget.value.toLowerCase().trim()})
-    }
 
-    render(){
+    const changeCurrentValue = e =>{
+      setCurrentValue(e.currentTarget.value.toLowerCase().trim())
+    }
     return(
         <header className="searchbar">
-  <form onSubmit={this.searchBarValue} className="form">
-  <button disabled={this.props.didLoading} type="submit" className="button">
+  <form onSubmit={searchBarValue} className="form">
+  <button disabled={didLoading} type="submit" className="button">
       <FaSearch className='icon'/>
     </button>
 
@@ -63,14 +58,13 @@ class Searchbar extends Component {
       autoComplete="off"
       autoFocus
       placeholder="Search images and photos"
-      value={this.state.currentValue}
-      onChange={this.currentValue}
+      value={currentValue}
+      onChange={changeCurrentValue}
     /> 
   
   </form>
 </header>
     )
-}
 }
 
 
