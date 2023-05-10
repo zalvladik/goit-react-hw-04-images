@@ -47,13 +47,13 @@ const App = () => {
                 theme: "dark",
                 });
             }  
-              setPhotosArray([...photosArray, ...result.hits])
+            setPhotosArray(prevState => [...prevState, ...result.hits])
           })
           .catch(error => console.log(error))
           .finally(() => {
             setDidLoading(false)
           })
-      },1000)
+        },1000)
     },[searchValue,currentPage])
     
   const onSubmit = (searchValue) => {

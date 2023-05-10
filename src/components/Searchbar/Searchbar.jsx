@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const Searchbar = ({onSubmit,didLoading}) => {
   const [currentValue, setCurrentValue] = useState('');
-  const [prevName, setPrevName] = useState('')
+  const [prevValue, setPrevValue] = useState('')
     
     const searchBarValue = e => {
       e.preventDefault()
@@ -24,7 +24,7 @@ const Searchbar = ({onSubmit,didLoading}) => {
           });
       }
 
-      if(currentValue.trim() === prevName){
+      if(currentValue.trim() === prevValue){
         return toast.error(`Ви уже продивляєтесь ${currentValue}`, {
           position: "top-right",
           autoClose: 2500,
@@ -38,7 +38,7 @@ const Searchbar = ({onSubmit,didLoading}) => {
       }
       
       onSubmit(currentValue);
-        setPrevName(currentValue)
+        setPrevValue(currentValue)
         setCurrentValue('');
     } 
 
